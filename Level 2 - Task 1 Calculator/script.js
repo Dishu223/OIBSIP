@@ -248,18 +248,16 @@ themeRadios.forEach(radio => {
     });
 });
 
-/* ===================
-   Info Tooltip Logic
-   =================== */
+/*info tooltip*/
 document.addEventListener('DOMContentLoaded', () => {
     const tooltip = document.querySelector('.info-tooltip');
     if (tooltip) {
-        // Show the tooltip after 2 seconds
+        // Show the tooltip after 5 seconds
         setTimeout(() => {
             tooltip.classList.add('visible');
         }, 5000);
 
-        // Hide the tooltip after 10 seconds total
+        // Hide the tooltip after 20 seconds total
         setTimeout(() => {
             tooltip.classList.remove('visible');
         }, 20000);

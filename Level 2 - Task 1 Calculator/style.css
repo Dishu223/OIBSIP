@@ -71,21 +71,19 @@ body {
 .previous-operand {
     color: rgba(0, 0, 0, .75);
     font-size: 1.5rem;
-    font-family: 'Orbitron', sans-serif; /* Use new font */
+    font-family: 'Orbitron', sans-serif;
 }
 
 .current-operand {
     color: black;
     font-size: 2.5rem;
-    font-family: 'Orbitron', sans-serif; /* Use new font */
-    letter-spacing: 2px; /* Add some spacing */
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
 }
 
-/* ===================
-   Theme Switcher Styles
-   =================== */
+/*Theme Switcher Styles*/
 .theme-switcher {
-    --total-options: 3; /* We have 3 themes */
+    --total-options: 3; /*3 themes*/
     display: flex;
     position: relative;
     background: #e0e5ec;
@@ -133,16 +131,14 @@ body {
     transform: translateX(0%);
 }
 #theme-dark:checked ~ .pill-indicator {
-    transform: translateX(105%); /* Adjust as needed */
+    transform: translateX(105%); /* can adjust as needed */
 }
 #theme-cyber:checked ~ .pill-indicator {
-    transform: translateX(210%); /* Adjust as needed */
+    transform: translateX(210%); /* can adjust as needed */
 }
 
 
-/* ===================
-   Dark Mode Theme
-   =================== */
+/* Dark Mode Theme */
 body.dark-mode {
     background: #26282B;
 }
@@ -191,9 +187,7 @@ body.dark-mode .pill-indicator {
 }
 
 
-/* ===================
-   Cyberpunk Theme
-   =================== */
+/*Cyberpunk Theme*/
 body.cyberpunk-mode {
     background: #0A0B1A;
 }
@@ -297,9 +291,7 @@ body.cyberpunk-mode .current-operand {
     animation: fadeOut 0.2s ease-in-out forwards;
 }
 
-/* ===================
-   New App Layout and History Log
-   =================== */
+/*New App Layout and History Log*/
 .app-container {
     display: flex;
     justify-content: center;
@@ -309,7 +301,7 @@ body.cyberpunk-mode .current-operand {
 
 .history-log {
     width: 250px;
-    height: 580px; /* Same height as calculator */
+    height: 580px; /* = calculator height */
     background-color: #e0e5ec;
     border-radius: 30px;
     padding: 20px;
@@ -394,7 +386,7 @@ body.cyberpunk-mode .history-entry .result {
 
 /* Final Polish Features */
 
-/* --- 1. Visual Feedback for Keyboard Press --- */
+/* 1. Visual Feedback for Keyboard Press */
 /* Light Mode */
 .calculator-grid > button.key-press {
     box-shadow: inset 4px 4px 8px #a3b1c6, inset -4px -4px 8px #ffffff;
@@ -416,7 +408,7 @@ body.cyberpunk-mode .calculator-grid > button.key-press {
 
 /* --- 2. Copy Button in History Log --- */
 .history-entry {
-    position: relative; /* Needed for positioning the copy button */
+    position: relative;
 }
 
 .copy-btn {
@@ -477,7 +469,7 @@ body.cyberpunk-mode .copy-btn:hover {
     margin: 0;
 }
 
-/* --- Tooltip Theme Styles --- */
+/*Tooltip Theme Styles*/
 /* Dark Mode */
 body.dark-mode .info-tooltip {
     background: #26282B;
