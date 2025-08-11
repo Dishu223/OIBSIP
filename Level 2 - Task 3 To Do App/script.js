@@ -139,7 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Replace your old addDragAndDropListeners function with this one
 const addDragAndDropListeners = () => {
     const draggables = pendingList.querySelectorAll('.task-item[draggable="true"]');
     
@@ -193,7 +192,7 @@ const addDragAndDropListeners = () => {
         tasks = [...reorderedPendingTasks, ...completedTasks];
         
         // Save the new order
-        saveAndRender(); // Re-render to solidify the order and remove all listeners
+        saveAndRender(); // Re-render
     });
 };
     
