@@ -1,0 +1,498 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    transition: background-color .3s ease, color .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background: #e0e5ec;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.calculator-grid {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+    background-color: #e0e5ec;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 10px 10px 20px #a3b1c6, -10px -10px 20px #ffffff;
+}
+
+.calculator-grid > button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: none;
+    outline: none;
+    margin: 10px;
+    border-radius: 20px;
+    background: #e0e5ec;
+    box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+    transition: all 0.1s ease-in-out;
+}
+
+.calculator-grid > button:hover {
+    box-shadow: 3px 3px 6px #a3b1c6, -3px -3px 6px #ffffff;
+}
+
+.calculator-grid > button:active {
+    box-shadow: inset 4px 4px 8px #a3b1c6, inset -4px -4px 8px #ffffff;
+    transform: translate(1px, 1px);
+}
+
+.span-two {
+    grid-column: span 2;
+}
+
+.output {
+    grid-column: 1 / -1;
+    background: #e0e5ec;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 20px;
+    word-wrap: break-word;
+    word-break: break-all;
+    border-radius: 20px;
+    margin: 10px;
+    box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff;
+}
+
+.previous-operand {
+    color: rgba(0, 0, 0, .75);
+    font-size: 1.5rem;
+    font-family: 'Orbitron', sans-serif; /* Use new font */
+}
+
+.current-operand {
+    color: black;
+    font-size: 2.5rem;
+    font-family: 'Orbitron', sans-serif; /* Use new font */
+    letter-spacing: 2px; /* Add some spacing */
+}
+
+/* ===================
+   Theme Switcher Styles
+   =================== */
+.theme-switcher {
+    --total-options: 3; /* We have 3 themes */
+    display: flex;
+    position: relative;
+    background: #e0e5ec;
+    border-radius: 3rem;
+    padding: 0.5rem;
+    gap: 1rem;
+    box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff;
+    margin-bottom: 2rem;
+}
+
+.theme-switcher input {
+    display: none;
+}
+
+.theme-switcher label {
+    position: relative;
+    padding: 0.6rem 1.5rem;
+    border-radius: 3rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: #555;
+    transition: color 0.3s ease-in-out;
+    z-index: 2;
+}
+
+.theme-switcher input:checked + label {
+    color: #3f51b5;
+}
+
+.pill-indicator {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    height: calc(100% - 1rem);
+    width: calc((100% / var(--total-options)) - 0.6rem);
+    background: #e0e5ec;
+    border-radius: 3rem;
+    box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    z-index: 1;
+}
+
+/* Sliding effect for the indicator */
+#theme-light:checked ~ .pill-indicator {
+    transform: translateX(0%);
+}
+#theme-dark:checked ~ .pill-indicator {
+    transform: translateX(105%); /* Adjust as needed */
+}
+#theme-cyber:checked ~ .pill-indicator {
+    transform: translateX(210%); /* Adjust as needed */
+}
+
+
+/* ===================
+   Dark Mode Theme
+   =================== */
+body.dark-mode {
+    background: #26282B;
+}
+body.dark-mode .calculator-grid,
+body.dark-mode .calculator-grid > button,
+body.dark-mode .output {
+    background-color: #26282B;
+    color: #E0E5EC;
+}
+body.dark-mode .calculator-grid {
+    box-shadow: 10px 10px 20px #1E2022, -10px -10px 20px #303236;
+}
+body.dark-mode .calculator-grid > button {
+    box-shadow: 5px 5px 10px #1E2022, -5px -5px 10px #303236;
+}
+body.dark-mode .calculator-grid > button:hover {
+    box-shadow: 3px 3px 6px #1E2022, -3px -3px 6px #303236;
+}
+body.dark-mode .calculator-grid > button:active {
+    box-shadow: inset 4px 4px 8px #1E2022, inset -4px -4px 8px #303236;
+    transform: translate(1px, 1px);
+}
+body.dark-mode .output {
+    box-shadow: inset 5px 5px 10px #1E2022, inset -5px -5px 10px #303236;
+}
+body.dark-mode .previous-operand {
+    color: rgba(255, 255, 255, .75);
+}
+body.dark-mode .current-operand {
+    color: white;
+}
+/* Dark mode theme switcher */
+body.dark-mode .theme-switcher {
+    background: #26282B;
+    box-shadow: inset 5px 5px 10px #1E2022, inset -5px -5px 10px #303236;
+}
+body.dark-mode .theme-switcher label {
+    color: #BABECC;
+}
+body.dark-mode .theme-switcher input:checked + label {
+    color: #0ef;
+}
+body.dark-mode .pill-indicator {
+    background: #26282B;
+    box-shadow: 5px 5px 10px #1E2022, -5px -5px 10px #303236;
+}
+
+
+/* ===================
+   Cyberpunk Theme
+   =================== */
+body.cyberpunk-mode {
+    background: #0A0B1A;
+}
+body.cyberpunk-mode .calculator-grid {
+    background-color: #141526;
+    border-radius: 0;
+    border: 2px solid #0ef;
+    box-shadow: 0 0 20px rgba(0, 239, 255, 0.5);
+}
+body.cyberpunk-mode .calculator-grid > button {
+    background: transparent;
+    border: 2px solid #0ef;
+    color: #0ef;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: 0 0 5px #0ef;
+}
+body.cyberpunk-mode .calculator-grid > button:hover {
+    background: rgba(0, 239, 255, 0.1);
+    box-shadow: 0 0 10px #0ef;
+}
+body.cyberpunk-mode .calculator-grid > button:active {
+    background: #0ef;
+    color: #0A0B1A;
+    box-shadow: none;
+    transform: scale(0.98) translate(1px, 1px);
+}
+body.cyberpunk-mode .output {
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 2px solid #0ef;
+}
+body.cyberpunk-mode .current-operand {
+    color: #0ef;
+}
+body.cyberpunk-mode .previous-operand {
+    color: rgba(0, 239, 255, 0.75);
+}
+/* Cyberpunk mode theme switcher */
+body.cyberpunk-mode .theme-switcher {
+    background: #141526;
+    border: 2px solid #f0f;
+    box-shadow: 0 0 10px #f0f;
+}
+body.cyberpunk-mode .theme-switcher label {
+    color: #f0f;
+}
+body.cyberpunk-mode .theme-switcher input:checked + label {
+    color: white;
+}
+body.cyberpunk-mode .pill-indicator {
+    background: #f0f;
+    box-shadow: 0 0 10px #f0f;
+}
+
+/* Display text glow for Dark Mode */
+body.dark-mode .current-operand {
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+/* Display text glow for Cyberpunk Mode */
+body.cyberpunk-mode .current-operand {
+    text-shadow: 0 0 8px var(--accent-color);
+}
+
+/* Animation for new digits on the display */
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    80% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.output .current-operand span {
+    display: inline-block;
+    font-family: 'Orbitron', sans-serif;
+    animation: popIn 0.3s ease forwards;
+}
+
+/* Animation for clearing the display */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+    }
+}
+
+.output .current-operand.clearing span {
+    animation: fadeOut 0.2s ease-in-out forwards;
+}
+
+/* ===================
+   New App Layout and History Log
+   =================== */
+.app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.history-log {
+    width: 250px;
+    height: 580px; /* Same height as calculator */
+    background-color: #e0e5ec;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 10px 10px 20px #a3b1c6, -10px -10px 20px #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+.history-log h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.history-content {
+    flex-grow: 1;
+    background: #e0e5ec;
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff;
+    overflow-y: auto; /* Add scrollbar if content overflows */
+}
+
+.history-entry {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+}
+.history-entry .expression {
+    font-size: 1rem;
+    color: rgba(0, 0, 0, .5);
+}
+.history-entry .result {
+    font-weight: bold;
+}
+
+
+/* --- History Log Theme Styles --- */
+/* Dark Mode */
+body.dark-mode .history-log,
+body.dark-mode .history-content {
+    background-color: #26282B;
+    color: #E0E5EC;
+}
+body.dark-mode .history-log {
+    box-shadow: 10px 10px 20px #1E2022, -10px -10px 20px #303236;
+}
+body.dark-mode .history-log h3 {
+    color: #BABECC;
+}
+body.dark-mode .history-content {
+    box-shadow: inset 5px 5px 10px #1E2022, inset -5px -5px 10px #303236;
+}
+body.dark-mode .history-entry .expression {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Cyberpunk Mode */
+body.cyberpunk-mode .history-log {
+    background-color: #141526;
+    border: 2px solid #0ef;
+    box-shadow: 0 0 20px rgba(0, 239, 255, 0.5);
+}
+body.cyberpunk-mode .history-log h3 {
+    color: #0ef;
+    text-shadow: 0 0 5px #0ef;
+}
+body.cyberpunk-mode .history-content {
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 2px solid #0ef;
+}
+body.cyberpunk-mode .history-entry .expression {
+    color: rgba(0, 239, 255, 0.75);
+}
+body.cyberpunk-mode .history-entry .result {
+    color: #f0f;
+}
+
+/* Final Polish Features */
+
+/* --- 1. Visual Feedback for Keyboard Press --- */
+/* Light Mode */
+.calculator-grid > button.key-press {
+    box-shadow: inset 4px 4px 8px #a3b1c6, inset -4px -4px 8px #ffffff;
+    transform: translate(1px, 1px);
+}
+/* Dark Mode */
+body.dark-mode .calculator-grid > button.key-press {
+    box-shadow: inset 4px 4px 8px #1E2022, inset -4px -4px 8px #303236;
+    transform: translate(1px, 1px);
+}
+/* Cyberpunk Mode */
+body.cyberpunk-mode .calculator-grid > button.key-press {
+    background: #0ef;
+    color: #0A0B1A;
+    box-shadow: 0 0 10px #0ef;
+    transform: scale(0.98) translate(1px, 1px);
+}
+
+
+/* --- 2. Copy Button in History Log --- */
+.history-entry {
+    position: relative; /* Needed for positioning the copy button */
+}
+
+.copy-btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #a3b1c6; /* Light mode color */
+    cursor: pointer;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.history-entry:hover .copy-btn {
+    opacity: 1; /* Show button on hover */
+}
+
+/* Dark Mode */
+body.dark-mode .copy-btn {
+    color: #5a5e66;
+}
+body.dark-mode .copy-btn:hover {
+    color: #E0E5EC;
+}
+
+/* Cyberpunk Mode */
+body.cyberpunk-mode .copy-btn {
+    color: #0ef;
+}
+body.cyberpunk-mode .copy-btn:hover {
+    text-shadow: 0 0 5px #0ef;
+}
+
+/* Info Tooltip Styles */
+.info-tooltip {
+    background-color: #e0e5ec;
+    border-radius: 15px;
+    padding: 15px 20px;
+    box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+    opacity: 0; /* Hidden by default */
+    transform: translateX(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none; /* Prevents interaction */
+}
+
+.info-tooltip.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.info-tooltip p {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #555;
+    margin: 0;
+}
+
+/* --- Tooltip Theme Styles --- */
+/* Dark Mode */
+body.dark-mode .info-tooltip {
+    background: #26282B;
+    box-shadow: 5px 5px 10px #1E2022, -5px -5px 10px #303236;
+}
+body.dark-mode .info-tooltip p {
+    color: #BABECC;
+}
+
+/* Cyberpunk Mode */
+body.cyberpunk-mode .info-tooltip {
+    background: #141526;
+    border: 2px solid #f0f;
+    box-shadow: 0 0 10px #f0f;
+}
+body.cyberpunk-mode .info-tooltip p {
+    color: #f0f;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Starlight Auth</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="auth-container">
+        <h2>Register</h2>
+        <form id="register-form">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" required>
+                    <i class='bx bx-show' id="password-toggle"></i>
+                </div>
+                <div class="strength-meter">
+                    <div class="strength-bar"></div>
+                    <p class="strength-text"></p>
+                </div>
+            </div>
+            <button type="submit">Register</button>
+            <p id="message"></p>
+        </form>
+        <div class="divider">OR</div>
+        <div class="social-logins">
+            <button class="social-btn google"><i class='bx bxl-google'></i><span>Sign up with Google</span></button>
+            <button class="social-btn github"><i class='bx bxl-github'></i><span>Sign up with GitHub</span></button>
+        </div>
+        <p class="switch-form">Already have an account? <a href="index.html">Login</a></p>
+    </div>
+    <script src="register.js"></script>
+</body>
+</html>
