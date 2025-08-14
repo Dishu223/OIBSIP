@@ -192,7 +192,7 @@ const addDragAndDropListeners = () => {
         tasks = [...reorderedPendingTasks, ...completedTasks];
         
         // Save the new order
-        saveAndRender(); // Re-render
+        saveAndRender(); // Re-render...
     });
 };
     

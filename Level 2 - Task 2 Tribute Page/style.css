@@ -24,7 +24,7 @@ body {
     line-height: 1.7;
 }
 
-/* --- Hero Section --- */
+/*Hero Section*/
 .hero-section {
     height: 100vh;
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hero_eren.jpg');
@@ -67,7 +67,7 @@ body {
     font-style: italic;
 }
 
-/* --- Parallax Sections --- */
+/*Parallax Sections*/
 .parallax {
     min-height: 70vh;
     background-position: center;
@@ -107,7 +107,7 @@ body {
     background-image: url('parallax2.png');
 }
 
-/* --- Timeline Section --- */
+/*Timeline Section*/
 .timeline {
     position: relative;
     max-width: 1500px;
@@ -169,7 +169,6 @@ body {
     margin-top: 15px;
 }
 
-/* --- Footer --- */
 .footer {
     text-align: center;
     padding: 40px 20px;

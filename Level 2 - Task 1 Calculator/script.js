@@ -124,7 +124,6 @@ class Calculator {
     }
 
     updateDisplay() {
-        // ... (this method is unchanged)
         this.currentOperandTextElement.innerHTML = '';
         const numberString = this.currentOperand.toString();
         const integerPart = numberString.split('.')[0];
@@ -156,7 +155,6 @@ class Calculator {
 }
 
 
-// --- DOM Element Selection ---
 const numberButtons = document.querySelectorAll('[data-number]');
 const operatorButtons = document.querySelectorAll('[data-operator]');
 const equalsButton = document.querySelector('[data-equals]');
@@ -166,10 +164,9 @@ const previousOperandTextElement = document.querySelector('[data-previous-operan
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
 const historyLogContentElement = document.querySelector('[data-history-log-content]');
 
-// --- Initializing the Calculator ---
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement, historyLogContentElement);
 
-// --- Event Listeners for Mouse Clicks ---
+// Event Listeners for Mouse Clicks
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.appendNumber(button.innerText);
@@ -198,7 +195,7 @@ deleteButton.addEventListener('click', () => {
     calculator.updateDisplay();
 });
 
-// --- Event Listener for Keyboard Input (with Visual Feedback) ---
+//Event Listener for Keyboard Input (with Visual Feedback)
 window.addEventListener('keydown', (event) => {
     let key = event.key;
     let buttonToAnimate;
@@ -234,7 +231,7 @@ window.addEventListener('keydown', (event) => {
     calculator.updateDisplay();
 });
 
-// --- Theme Switcher Logic ---
+//Theme Switcher Logic
 const themeRadios = document.querySelectorAll('input[name="theme"]');
 themeRadios.forEach(radio => {
     radio.addEventListener('change', () => {
